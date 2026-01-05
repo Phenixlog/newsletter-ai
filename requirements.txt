@@ -1,0 +1,5 @@
+anthropic
+python-dotenv
+resend
+pydantic
+duckduckgo-search

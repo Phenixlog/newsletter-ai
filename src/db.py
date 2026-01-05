@@ -27,7 +27,11 @@ class NewsletterModel(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
 # Create tables
-Base.metadata.create_all(bind=engine)
+try:
+    Base.metadata.create_all(bind=engine)
+    print(f"✅ Database initialized with URL: {DATABASE_URL.split('@')[-1] if '@' in DATABASE_URL else 'local_file'}")
+except Exception as e:
+    print(f"❌ Database initialization failed: {e}")
 
 def save_newsletter_to_db(content_json: str, week_number: int, date_start: str, date_end: str):
     db = SessionLocal()

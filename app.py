@@ -13,6 +13,25 @@ app = FastAPI(title="AI Newsletter Dashboard")
 DASHBOARD_DIR = "dashboard"
 
 # API Endpoints
+@app.get("/api/health")
+async def health():
+    """Diagnostic endpoint to check DB connection."""
+    from src.db import DATABASE_URL, engine
+    from sqlalchemy import text
+    db_type = "PostgreSQL" if "postgresql" in DATABASE_URL else "SQLite"
+    status = "Connected"
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+    except Exception as e:
+        status = f"Error: {str(e)}"
+    
+    return {
+        "status": status,
+        "database_type": db_type,
+        "url_detected": DATABASE_URL.split("@")[-1] if "@" in DATABASE_URL else "local_file"
+    }
+
 @app.get("/api/news")
 async def list_news():
     """List all archived newsletters from Database."""

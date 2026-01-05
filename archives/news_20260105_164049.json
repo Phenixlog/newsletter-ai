@@ -1,0 +1,80 @@
+{
+  "week_number": 1,
+  "date_start": "29/12/2025",
+  "date_end": "05/01/2026",
+  "highlight": {
+    "category": "highlight",
+    "name": "La DGSI alerte sur les risques d'IA : trois entreprises françaises piégées",
+    "description": "La Direction Générale de la Sécurité Intérieure expose publiquement trois cas réels d'entreprises françaises confrontées à des incidents de sécurité liés à l'utilisation d'outils d'IA, révélant des fuites de données confidentielles et des risques d'ingérence.",
+    "url": "https://www.usine-digitale.fr/intelligence-artificielle/ia-generative/risques-lies-a-lia-trois-cas-dentreprises-francaises-racontes-par-la-dgsi.MM7XB34SLNCMNEE7TLQ4RNKTCU.html",
+    "so_what": "Cette alerte institutionnelle marque un tournant dans la prise de conscience des risques cyber liés à l'IA générative en entreprise. Elle expose la vulnérabilité des organisations face aux outils d'IA non maîtrisés et aux risques d'exfiltration de données sensibles.",
+    "application": "Auditez immédiatement l'usage des outils d'IA dans votre organisation, établissez une politique de gouvernance claire sur les données pouvant être partagées avec des IA tierces, et sensibilisez vos équipes aux risques de sécurité spécifiques à l'IA générative.",
+    "source_name": "L'Usine Digitale",
+    "date_published": "05/01/2026"
+  },
+  "france_news": [
+    {
+      "category": "france",
+      "name": "Productivité, compétitivité, souveraineté : l'IA comme réponse aux défis français",
+      "description": "Un article d'expert analyse comment l'intelligence artificielle générative peut répondre aux trois défis majeurs de la France : la productivité, la compétitivité économique et la souveraineté technologique, offrant une opportunité de repositionnement stratégique.",
+      "url": "https://www.usine-digitale.fr/les-experts-du-numerique/productivite-competitivite-souverainete-comment-lintelligence-artificielle-peut-repondre-aux-trois-defis-majeurs-de-la-france.ASBUM6KQ7BCWTD753RP2DRWW6M.html",
+      "so_what": "L'IA est positionnée comme un levier stratégique national pour redresser la compétitivité française et européenne face à la Chine et aux États-Unis, au-delà d'une simple innovation technologique.",
+      "application": "Intégrez l'IA dans votre stratégie d'entreprise comme un facteur de compétitivité, explorez les opportunités de gains de productivité et positionnez-vous sur des solutions souveraines pour anticiper les régulations.",
+      "source_name": "L'Usine Digitale",
+      "date_published": "01/01/2026"
+    },
+    {
+      "category": "france",
+      "name": "Quentech : l'IA sur mesure pour libérer la performance des PME et ETI",
+      "description": "L'entreprise française Quentech propose des solutions d'IA personnalisées pour les PME et ETI, marquant l'entrée de l'intelligence artificielle dans une ère de retour sur investissement mesurable plutôt que de simple fascination technologique.",
+      "url": "https://www.lefigaro.fr/economie/l-ia-sur-mesure-comment-quentech-libere-la-performance-des-pme-et-eti-20260105",
+      "so_what": "Démocratisation de l'accès à l'IA pour les entreprises de taille moyenne avec une approche ROI-centrée, permettant une adoption pragmatique au-delà des grands groupes.",
+      "application": "Si vous êtes une PME ou ETI, explorez les solutions d'IA personnalisées adaptées à votre échelle plutôt que d'attendre d'avoir les ressources des grandes entreprises. Privilégiez les prestataires capables de démontrer un ROI concret.",
+      "source_name": "Le Figaro",
+      "date_published": "05/01/2026"
+    }
+  ],
+  "international_news": [
+    {
+      "category": "international",
+      "name": "Meta acquiert Manus pour 2 milliards de dollars : accélération chinoise dans l'IA",
+      "description": "Meta finalise l'acquisition de Manus, un agent IA développé par la startup chinoise Butterfly Effect, pour un montant estimé entre 1,5 et 2 milliards de dollars. Cette opération marque la plus importante acquisition d'une startup d'IA chinoise par un géant américain.",
+      "url": "https://www.lemonde.fr/economie/article/2025/12/30/le-rachat-de-manus-par-meta-symbole-de-la-puissance-des-geants-du-numerique-dans-l-ia_6660005_3234.html",
+      "so_what": "Cette acquisition symbolise l'intensification de la course mondiale à l'IA et démontre la montée en puissance des startups chinoises malgré les tensions géopolitiques. Meta rattrape son retard face à OpenAI et Anthropic en pariant sur les agents IA.",
+      "application": "Surveillez l'évolution des agents IA qui deviennent le nouveau terrain de bataille technologique. Anticipez l'intégration d'agents autonomes dans vos workflows et testez les solutions émergentes pour identifier les cas d'usage pertinents.",
+      "source_name": "Le Monde",
+      "date_published": "30/12/2025"
+    },
+    {
+      "category": "international",
+      "name": "OpenAI : rémunération record de 1,5M$ par employé en actions",
+      "description": "OpenAI établit un nouveau record dans la tech avec une rémunération moyenne par employé de 1,5 million de dollars en actions, dépassant tous les standards historiques des startups technologiques pour attirer et retenir les meilleurs talents face à la concurrence féroce.",
+      "url": "https://www.bfmtv.com/economie/entreprises/un-employe-d-open-ai-touche-en-moyenne-1-5-million-de-dollars-en-actions-dans-l-histoire-aucune-start-up-de-la-tech-n-a-jamais-remunere-aussi-grassement-ses-salaries_AV-202512310447.html",
+      "so_what": "Cette stratégie de rémunération révèle l'intensité de la guerre des talents dans l'IA et pourrait créer une inflation salariale dans tout le secteur, rendant l'accès aux experts IA encore plus difficile pour les entreprises européennes.",
+      "application": "Réévaluez votre stratégie de rétention des talents IA, explorez des modèles alternatifs (intéressement, formation continue, projets stimulants) si vous ne pouvez rivaliser financièrement, et considérez des partenariats académiques pour former vos propres experts.",
+      "source_name": "BFMTV",
+      "date_published": "31/12/2025"
+    },
+    {
+      "category": "international",
+      "name": "Samsung : 800 millions d'appareils équipés de Gemini d'ici 2026",
+      "description": "Le géant sud-coréen Samsung annonce son intention de doubler le nombre d'appareils mobiles équipés du modèle d'IA Gemini de Google, visant 800 millions de dispositifs, dans sa stratégie de différenciation face à Apple.",
+      "url": "https://www.usine-digitale.fr/big-tech/samsung/ia-generative-800-millions-dappareils-samsung-bientot-equipes-de-gemini.N2ERB2NRXFBZ3CDBGPCYXMAVHU.html",
+      "so_what": "L'IA générative devient un argument de vente massif dans l'industrie mobile avec une intégration à l'échelle de centaines de millions d'utilisateurs, accélérant l'adoption grand public et créant de nouveaux usages quotidiens.",
+      "application": "Anticipez que vos clients et collaborateurs auront bientôt accès à des assistants IA puissants directement sur leurs smartphones. Préparez vos services et produits pour être compatibles avec ces nouveaux usages mobiles augmentés par l'IA.",
+      "source_name": "L'Usine Digitale",
+      "date_published": "05/01/2026"
+    }
+  ],
+  "tool_of_the_week": {
+    "category": "tool",
+    "name": "Forrester identifie l'IA agentique comme technologie émergente prioritaire 2026",
+    "description": "Le cabinet d'analyse Forrester place l'IA générative et surtout l'IA agentique parmi les dix technologies émergentes devant générer un ROI sous deux ans, appelant les DSI à mieux évaluer et prioriser ces investissements technologiques.",
+    "url": "https://www.lemagit.fr/actualites/366636671/Forrester-IA-generative-et-agentique-au-cur-des-technologies-emergentes",
+    "so_what": "L'IA agentique (agents autonomes capables d'exécuter des tâches complexes) devient la prochaine frontière après l'IA générative, avec un horizon de ROI court promettant une adoption rapide en entreprise.",
+    "application": "Explorez dès maintenant les plateformes d'agents IA (AutoGPT, AgentGPT, Microsoft Copilot Studio, etc.) pour identifier des cas d'usage où des agents autonomes pourraient automatiser des processus métiers complexes actuellement manuels.",
+    "source_name": "LeMagIT",
+    "date_published": "30/12/2025"
+  },
+  "take_away": "Cette première semaine de 2026 confirme trois tendances majeures : la sécurité devient un enjeu critique avec l'alerte de la DGSI sur les risques concrets d'utilisation non maîtrisée de l'IA en entreprise ; la consolidation du marché s'accélère avec des acquisitions massives (Meta/Manus) et une guerre des talents sans précédent (OpenAI) ; enfin, l'IA passe définitivement du stade expérimental à l'industrialisation massive (800M d'appareils Samsung, focus ROI pour PME/ETI). Pour les entreprises françaises, le message est clair : il faut simultanément accélérer l'adoption pour rester compétitif tout en renforçant drastiquement la gouvernance et la sécurité. L'année 2026 sera celle de la maturité opérationnelle de l'IA, pas de l'expérimentation."
+}

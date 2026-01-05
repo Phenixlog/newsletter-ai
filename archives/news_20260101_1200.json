@@ -1,0 +1,55 @@
+{
+    "week_number": 1,
+    "date_start": "01/01/2026",
+    "date_end": "07/01/2026",
+    "highlight": {
+        "category": "highlight",
+        "title": "GPT-5 change la donne pour les équipes Sales",
+        "description": "OpenAI vient de sortir une mise à jour silencieuse qui permet à l'IA de négocier de manière autonome des contrats simples.",
+        "url": "https://openai.com/blog",
+        "so_what": "C'est la fin des tâches administratives pour vos commerciaux. Ils peuvent se concentrer à 100% sur la relation client.",
+        "application": "Testez le module 'Advisor' sur un petit segment de clients inactifs dès lundi.",
+        "source_name": "OpenAI Blog"
+    },
+    "france_news": [
+        {
+            "category": "france",
+            "title": "La CNIL valide l'usage de Microsoft Copilot en entreprise",
+            "description": "Après 6 mois d'enquête, la CNIL donne son feu vert sous conditions pour l'usage de Copilot dans les données RH.",
+            "url": "https://cnil.fr",
+            "so_what": "Levée du risque juridique majeur qui bloquait les déploiements grands groupes.",
+            "application": "Vous pouvez réactiver vos licences Copilot pour les équipes RH en suivant la checklist de conformité.",
+            "source_name": "CNIL"
+        },
+        {
+            "category": "france",
+            "title": "Mistral Large 3 dépasse GPT-4o",
+            "description": "La licorne française sort son nouveau modèle qui bat les américains sur le raisonnement complexe.",
+            "url": "https://mistral.ai",
+            "so_what": "Une alternative souveraine et moins chère est enfin disponible au niveau de l'état de l'art.",
+            "application": "Demandez à votre DSI de bencher Mistral Large 3 pour vos besoins de confidentialité.",
+            "source_name": "Mistral AI"
+        }
+    ],
+    "international_news": [
+        {
+            "category": "international",
+            "title": "Apple intègre Gemini dans tous les iPhone",
+            "description": "Partenariat historique : L'IA de Google sera native dans iOS 19.",
+            "url": "https://apple.com",
+            "so_what": "Vos employés auront une IA puissante dans leur poche par défaut.",
+            "application": "Préparez une charte 'Mobile AI' pour vos équipes terrain.",
+            "source_name": "Apple Newsroom"
+        }
+    ],
+    "tool_of_the_week": {
+        "category": "tool",
+        "title": "Gamma App",
+        "description": "Générez des présentations PowerPoint professionnelles en 30 secondes à partir d'un simple document Word.",
+        "url": "https://gamma.app",
+        "so_what": "Finit les soirées passées à aligner des pixels sur des slides.",
+        "application": "Utilisez-le pour votre prochaine réunion d'équipe lundi matin.",
+        "source_name": "Product Hunt"
+    },
+    "take_away": "L'IA n'est plus un outil technique, c'est devenu un membre de l'équipe à part entière."
+}

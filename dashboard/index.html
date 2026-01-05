@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Newsletter HQ • Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="nebula-dark">
+    <div class="glass-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="icon">🤖</span>
+                <h1>IA Hebdo <small>HQ</small></h1>
+            </div>
+
+            <button id="run-btn" class="btn-primary">
+                <span class="icon">🚀</span> Lancer une Veille
+            </button>
+
+            <nav class="archives">
+                <h2>Archives</h2>
+                <ul id="archive-list">
+                    <li class="loading">Chargement...</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="content-header">
+                <div id="news-info">
+                    <span class="badge" id="week-badge">Semaine 1</span>
+                    <h2 id="main-title">Sélectionnez une newsletter</h2>
+                    <p id="date-range" class="subtitle">---</p>
+                </div>
+                <div class="actions">
+                    <button id="refresh-btn" class="btn-icon">🔄</button>
+                    <span id="status-tag" class="status-offline">Prêt</span>
+                </div>
+            </header>
+
+            <div id="newsletter-viewer" class="viewer empty">
+                <div class="empty-state">
+                    <div
+                        style="font-size: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5));">
+                        🚀</div>
+                    <h3>Bienvenue dans le cockpit</h3>
+                    <p>Choisissez une archive à gauche ou lancez une nouvelle veille pour commencer.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="toast" class="hidden">Message ici</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -36,11 +36,36 @@ def main():
         print("\n🎨 STEP 2: Generating HTML...")
         html = generate_html(content)
         
-        # Save backup locally
-        backup_file = f"newsletter_{datetime.now().strftime('%Y%m%d')}.html"
+        # Save backup locally (HTML)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        backup_file = f"newsletter_{timestamp}.html"
         with open(backup_file, "w", encoding="utf-8") as f:
             f.write(html)
         print(f"✅ HTML saved to {backup_file}")
+
+        # Save for Dashboard (JSON)
+        archive_dir = "archives"
+        if not os.path.exists(archive_dir):
+            os.makedirs(archive_dir)
+        
+        json_content = content.model_dump_json(indent=2)
+        json_file = os.path.join(archive_dir, f"news_{timestamp}.json")
+        with open(json_file, "w", encoding="utf-8") as f:
+            f.write(json_content)
+        print(f"📂 Archive JSON saved to {json_file}")
+
+        # NEW: Save to Database
+        try:
+            from src.db import save_newsletter_to_db
+            save_newsletter_to_db(
+                content_json=json_content,
+                week_number=content.week_number,
+                date_start=content.date_start,
+                date_end=content.date_end
+            )
+            print("💾 Newsletter saved to Database.")
+        except Exception as db_err:
+            print(f"⚠️ Warning: Could not save to DB: {db_err}")
 
         # STEP 3: SEND EMAIL
         print("\n📧 STEP 3: Sending Email...")

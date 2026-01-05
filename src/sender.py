@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def send_newsletter(html_content: str, subject: str, to_email: str):
-    """Sends the newsletter via Resend API."""
+    """Sends the newsletter via Resend API. Supports multiple recipients via comma-separated string."""
     
     api_key = os.getenv("RESEND_API_KEY")
     from_email = os.getenv("FROM_EMAIL", "onboarding@resend.dev")
@@ -13,18 +13,27 @@ def send_newsletter(html_content: str, subject: str, to_email: str):
     if not api_key:
         raise ValueError("RESEND_API_KEY is missing in .env")
 
-    print(f"📧 Sending email to {to_email}...")
+    # Handle multiple recipients
+    if isinstance(to_email, str) and "," in to_email:
+        recipients = [e.strip() for e in to_email.split(",") if e.strip()]
+    else:
+        recipients = to_email
+
+    print(f"📧 Sending email to {recipients}...")
     
     resend.api_key = api_key
     
     try:
         r = resend.Emails.send({
             "from": from_email,
-            "to": to_email,
+            "to": recipients,
             "subject": subject,
             "html": html_content
         })
-        print(f"✅ Email sent successfully! ID: {r.get('id')}")
+        if hasattr(r, "get"):
+             print(f"✅ Email sent successfully! ID: {r.get('id')}")
+        else:
+             print(f"✅ Email sent successfully!")
         return r
     except Exception as e:
         print(f"❌ Failed to send email: {e}")

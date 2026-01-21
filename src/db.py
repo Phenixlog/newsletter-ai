@@ -20,6 +20,7 @@ class NewsletterModel(Base):
     __tablename__ = "newsletters"
 
     id = Column(Integer, primary_key=True, index=True)
+    newsletter_id = Column(String, index=True) # e.g., 'ia-hebdo'
     week_number = Column(Integer)
     date_start = Column(String)
     date_end = Column(String)
@@ -33,10 +34,11 @@ try:
 except Exception as e:
     print(f"❌ Database initialization failed: {e}")
 
-def save_newsletter_to_db(content_json: str, week_number: int, date_start: str, date_end: str):
+def save_newsletter_to_db(content_json: str, newsletter_id: str, week_number: int, date_start: str, date_end: str):
     db = SessionLocal()
     try:
         new_item = NewsletterModel(
+            newsletter_id=newsletter_id,
             week_number=week_number,
             date_start=date_start,
             date_end=date_end,
@@ -49,10 +51,13 @@ def save_newsletter_to_db(content_json: str, week_number: int, date_start: str, 
     finally:
         db.close()
 
-def get_all_newsletters_from_db():
+def get_all_newsletters_from_db(newsletter_id: str = None):
     db = SessionLocal()
     try:
-        return db.query(NewsletterModel).order_by(NewsletterModel.created_at.desc()).all()
+        query = db.query(NewsletterModel)
+        if newsletter_id:
+            query = query.filter(NewsletterModel.newsletter_id == newsletter_id)
+        return query.order_by(NewsletterModel.created_at.desc()).all()
     finally:
         db.close()
 

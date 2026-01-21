@@ -4,63 +4,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Newsletter HQ • Dashboard</title>
+    <title>Newsletter Studio • Phenix Log</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@400;600;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
-<body class="nebula-dark">
-    <div class="glass-container">
-        <!-- Sidebar -->
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
         <aside class="sidebar">
-            <div class="logo">
-                <span class="icon">🤖</span>
-                <h1>IA Hebdo <small>HQ</small></h1>
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">📨</span>
+                    <div class="logo-text">
+                        <span class="logo-title">Newsletter</span>
+                        <span class="logo-subtitle">Studio</span>
+                    </div>
+                </div>
             </div>
 
-            <button id="run-btn" class="btn-primary">
-                <span class="icon">🚀</span> Lancer une Veille
-            </button>
+            <div class="newsletter-switcher">
+                <label>Newsletter Active</label>
+                <select id="newsletter-select">
+                    <option value="">Chargement...</option>
+                </select>
+            </div>
 
-            <nav class="archives">
-                <h2>Archives</h2>
-                <ul id="archive-list">
-                    <li class="loading">Chargement...</li>
-                </ul>
+            <nav class="nav-menu">
+                <a href="#dashboard" class="nav-item active" data-page="dashboard">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                <a href="#newsletters" class="nav-item" data-page="newsletters">
+                    <span class="nav-icon">📰</span>
+                    <span class="nav-label">Archives</span>
+                </a>
+                <a href="#recipients" class="nav-item" data-page="recipients">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-label">Destinataires</span>
+                </a>
+                <a href="#settings" class="nav-item" data-page="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-label">Gestion</span>
+                </a>
             </nav>
+
+            <div class="sidebar-footer">
+                <button id="run-btn" class="btn-launch">
+                    <span class="btn-icon">🚀</span>
+                    <span>Lancer la Veille</span>
+                </button>
+                <div class="version-info">v2.1 • Multi-Engine</div>
+            </div>
         </aside>
 
-        <!-- Main Content -->
-        <main class="content">
-            <header class="content-header">
-                <div id="news-info">
-                    <span class="badge" id="week-badge">Semaine 1</span>
-                    <h2 id="main-title">Sélectionnez une newsletter</h2>
-                    <p id="date-range" class="subtitle">---</p>
-                </div>
-                <div class="actions">
-                    <button id="refresh-btn" class="btn-icon">🔄</button>
-                    <span id="status-tag" class="status-offline">Prêt</span>
-                </div>
-            </header>
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Page: Dashboard -->
+            <section id="page-dashboard" class="page active">
+                <header class="page-header">
+                    <h1>Dashboard</h1>
+                    <p class="page-subtitle">Vue d'ensemble de votre système de newsletter</p>
+                </header>
 
-            <div id="newsletter-viewer" class="viewer empty">
-                <div class="empty-state">
-                    <div
-                        style="font-size: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5));">
-                        🚀</div>
-                    <h3>Bienvenue dans le cockpit</h3>
-                    <p>Choisissez une archive à gauche ou lancez une nouvelle veille pour commencer.</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📨</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-newsletters">-</span>
+                            <span class="stat-label">Newsletters envoyées</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-recipients">-</span>
+                            <span class="stat-label">Destinataires</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-next-send">Vendredi</span>
+                            <span class="stat-label">Prochain envoi</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <span class="stat-value status-active">Actif</span>
+                            <span class="stat-label">Statut système</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <div class="dashboard-grid">
+                    <div class="card recent-newsletters">
+                        <div class="card-header">
+                            <h3>Dernières Newsletters</h3>
+                            <a href="#newsletters" class="link-more" data-page="newsletters">Voir tout →</a>
+                        </div>
+                        <ul id="recent-list" class="recent-list">
+                            <li class="loading">Chargement...</li>
+                        </ul>
+                    </div>
+
+                    <div class="card quick-actions">
+                        <div class="card-header">
+                            <h3>Actions Rapides</h3>
+                        </div>
+                        <div class="actions-list">
+                            <button class="action-btn" id="quick-launch">
+                                <span class="action-icon">🚀</span>
+                                <span>Générer maintenant</span>
+                            </button>
+                            <button class="action-btn" data-page="recipients">
+                                <span class="action-icon">➕</span>
+                                <span>Ajouter un destinataire</span>
+                            </button>
+                            <button class="action-btn" data-page="settings">
+                                <span class="action-icon">🎨</span>
+                                <span>Personnaliser le contenu</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page: Newsletters -->
+            <section id="page-newsletters" class="page">
+                <header class="page-header">
+                    <h1>Newsletters</h1>
+                    <p class="page-subtitle">Historique et archives de toutes vos newsletters</p>
+                </header>
+
+                <div class="newsletters-layout">
+                    <div class="newsletters-list-panel">
+                        <div class="panel-header">
+                            <h3>Archives</h3>
+                        </div>
+                        <ul id="archive-list" class="archive-list">
+                            <li class="loading">Chargement...</li>
+                        </ul>
+                    </div>
+                    <div class="newsletter-preview-panel">
+                        <div id="newsletter-viewer" class="viewer empty">
+                            <div class="empty-state">
+                                <div class="empty-icon">📰</div>
+                                <h3>Sélectionnez une newsletter</h3>
+                                <p>Cliquez sur une archive pour voir son contenu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page: Recipients -->
+            <section id="page-recipients" class="page">
+                <header class="page-header">
+                    <div class="header-row">
+                        <div>
+                            <h1>Destinataires</h1>
+                            <p class="page-subtitle">Gérez la liste des personnes qui reçoivent vos newsletters</p>
+                        </div>
+                        <button class="btn-primary" id="add-recipient-btn">
+                            <span>➕</span> Ajouter
+                        </button>
+                    </div>
+                </header>
+
+                <div class="card">
+                    <table class="recipients-table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Groupe</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recipients-list">
+                            <!-- Will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add Recipient Modal -->
+                <div id="modal-add-recipient" class="modal hidden">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Ajouter un destinataire</h3>
+                            <button class="modal-close">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="new-email" placeholder="exemple@entreprise.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Groupe (optionnel)</label>
+                                <select id="new-group">
+                                    <option value="">Aucun groupe</option>
+                                    <option value="tech">Équipe Tech</option>
+                                    <option value="direction">Direction</option>
+                                    <option value="commercial">Commercial</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-secondary modal-cancel">Annuler</button>
+                            <button class="btn-primary" id="save-recipient">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page: Settings -->
+            <section id="page-settings" class="page">
+                <header class="page-header">
+                    <h1>Configuration</h1>
+                    <p class="page-subtitle">Personnalisez le comportement et le contenu de vos newsletters</p>
+                </header>
+
+                <div class="settings-grid">
+                    <div class="card settings-card">
+                        <div class="card-header">
+                            <h3>📝 Contenu</h3>
+                        </div>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label>Thématique principale</label>
+                                <select id="setting-theme">
+                                    <option value="ai-business">IA & Business</option>
+                                    <option value="ai-tech">IA & Technologie</option>
+                                    <option value="ai-general">IA Généraliste</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Ton éditorial</label>
+                                <select id="setting-tone">
+                                    <option value="professional">Professionnel</option>
+                                    <option value="casual">Décontracté</option>
+                                    <option value="technical">Technique</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Langue</label>
+                                <select id="setting-language">
+                                    <option value="fr">Français</option>
+                                    <option value="en">English</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card settings-card">
+                        <div class="card-header">
+                            <h3>📅 Planification</h3>
+                        </div>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label>Fréquence d'envoi</label>
+                                <select id="setting-frequency">
+                                    <option value="weekly">Hebdomadaire</option>
+                                    <option value="biweekly">Bi-mensuel</option>
+                                    <option value="monthly">Mensuel</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Jour d'envoi</label>
+                                <select id="setting-day">
+                                    <option value="1">Lundi</option>
+                                    <option value="2">Mardi</option>
+                                    <option value="3">Mercredi</option>
+                                    <option value="4">Jeudi</option>
+                                    <option value="5" selected>Vendredi</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Heure d'envoi</label>
+                                <input type="time" id="setting-time" value="09:00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card settings-card">
+                        <div class="card-header">
+                            <h3>✉️ Expéditeur</h3>
+                        </div>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label>Nom de l'expéditeur</label>
+                                <input type="text" id="setting-sender-name" value="IA Hebdo">
+                            </div>
+                            <div class="form-group">
+                                <label>Email d'envoi</label>
+                                <input type="email" id="setting-sender-email" value="newsletter@news.alohria.com"
+                                    disabled>
+                                <small class="form-hint">Configuré via Resend</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-actions">
+                    <button class="btn-primary" id="save-settings">💾 Sauvegarder les paramètres</button>
+                </div>
+            </section>
         </main>
     </div>
 
-    <div id="toast" class="hidden">Message ici</div>
+    <div id="toast" class="toast hidden"></div>
 
     <script src="script.js"></script>
 </body>

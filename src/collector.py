@@ -63,11 +63,23 @@ class NewsletterContent(BaseModel):
         return v
 
 class AINewsCollector:
-    def __init__(self):
+    def __init__(self, config: dict = None):
+        """
+        Initialize the collector with optional newsletter config.
+        Config can contain: theme, keywords, tone, language, name
+        """
         self.api_key = os.getenv("ANTHROPIC_API_KEY")
         self.client = Anthropic(api_key=self.api_key) if self.api_key else None
-        self.model = "claude-sonnet-4-5-20250929" 
+        self.model = "claude-sonnet-4-5-20250929"
         self.ddgs = DDGS()
+        
+        # Dynamic config with defaults
+        self.config = config or {}
+        self.theme = self.config.get('theme', 'Intelligence Artificielle, Machine Learning, LLM')
+        self.keywords = self.config.get('keywords', ['IA', 'intelligence artificielle', 'OpenAI', 'Anthropic'])
+        self.tone = self.config.get('tone', 'professionnel')
+        self.language = self.config.get('language', 'fr')
+        self.newsletter_name = self.config.get('name', 'IA Hebdo')
 
     def get_date_range(self):
         """Calculates the date range: Monday of previous week to Monday of current week."""
@@ -76,6 +88,16 @@ class AINewsCollector:
         current_monday = today - timedelta(days=days_since_monday)
         previous_monday = current_monday - timedelta(days=7)
         return previous_monday.strftime("%Y-%m-%d"), today.strftime("%Y-%m-%d")
+
+    def build_search_queries(self, start_date: str, end_date: str) -> List[str]:
+        """Build search queries based on newsletter config."""
+        base_keywords = ' '.join(self.keywords[:4])  # Use first 4 keywords
+        queries = [
+            f"actualités {base_keywords} France business {start_date}..{end_date}",
+            f"nouvelles {base_keywords} impact business",
+            f"nouveaux outils productivité {self.keywords[0]} business"
+        ]
+        return queries
 
     def search_web(self, queries: List[str], max_results=10) -> str:
         context = ""
@@ -98,23 +120,31 @@ class AINewsCollector:
         start_obj = datetime.strptime(start_date, "%Y-%m-%d")
         end_obj = datetime.strptime(end_date, "%Y-%m-%d")
         
-        print(f"🚀 Filtering News between {start_date} and {end_date}")
+        print(f"🚀 [{self.newsletter_name}] Filtering News between {start_date} and {end_date}")
+        print(f"📌 Theme: {self.theme}")
 
-        queries = [
-            f"actualités IA intelligence artificielle France business {start_date}..{end_date}",
-            "nouvelles IA OpenAI Anthropic Google Mistral impact business",
-            "nouveaux outils productivité IA générative business"
-        ]
+        queries = self.build_search_queries(start_date, end_date)
 
         raw_context = self.search_web(queries)
         if not raw_context:
             raise Exception("No fresh results found via DuckDuckGo.")
         
-        print("🧠 Analyzing data with Claude 4.5 Sonnet (Strict Mode)...")
+        print(f"🧠 [{self.newsletter_name}] Analyzing data with Claude 4.5 Sonnet...")
         
+        # Dynamic system prompt based on config
+        tone_instruction = {
+            'professionnel': 'Utilise un ton professionnel et factuel.',
+            'casual': 'Utilise un ton décontracté et accessible.',
+            'technique': 'Utilise un ton technique avec des détails précis.'
+        }.get(self.tone, 'Utilise un ton professionnel.')
+
         system_prompt = f"""
-        Tu es un analyste IA Senior. Nous sommes le {datetime.now().strftime('%d/%m/%Y')}.
-        Génère le contenu de la newsletter hebdomadaire pour la période du {start_obj.strftime('%d/%m/%Y')} au {end_obj.strftime('%d/%m/%Y')}.
+        Tu es un analyste Senior spécialisé en {self.theme}. Nous sommes le {datetime.now().strftime('%d/%m/%Y')}.
+        Génère le contenu de la newsletter "{self.newsletter_name}" pour la période du {start_obj.strftime('%d/%m/%Y')} au {end_obj.strftime('%d/%m/%Y')}.
+        
+        THÉMATIQUE: {self.theme}
+        TON: {tone_instruction}
+        LANGUE: {'Français' if self.language == 'fr' else 'English'}
 
         RÈGLES DE SÉLECTION STRICTES :
         - Les infos DOIVENT être publiées après le {start_obj.strftime('%d/%m/%Y')}.

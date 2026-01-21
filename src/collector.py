@@ -121,6 +121,12 @@ class AINewsCollector:
         - IGNORE toute news historique (ex: Mistral sept 2025).
         - Sois précis sur les dates.
 
+        RÈGLE SPÉCIALE POUR "tool_of_the_week" :
+        - Ce doit être un VRAI OUTIL IA (SaaS, app, API, extension).
+        - Le champ "link" DOIT être l'URL OFFICIELLE du site de l'outil (ex: https://outil.com), PAS un article de blog qui en parle.
+        - Exemples valides: Perplexity, Notion AI, Cursor, v0.dev, Claude, Midjourney, etc.
+        - Si tu trouves un outil mentionné dans un article, donne le lien DIRECT vers le site de l'outil.
+
         FORMAT JSON REQUIS (STRICT) :
         {{
             "week_number": int,
@@ -129,7 +135,7 @@ class AINewsCollector:
             "highlight": {{
                 "title": "nom",
                 "description": "résumé",
-                "link": "url",
+                "link": "url article source",
                 "impact": "so what",
                 "action": "application",
                 "source_name": "nom source",
@@ -137,7 +143,13 @@ class AINewsCollector:
             }},
             "france_news": [ {{ ... same fields ... }} ],
             "international_news": [ {{ ... same fields ... }} ],
-            "tool_of_the_week": {{ ... same fields ... }},
+            "tool_of_the_week": {{
+                "title": "Nom de l'outil",
+                "description": "Ce que fait l'outil",
+                "link": "URL OFFICIELLE du site de l'outil (PAS un article)",
+                "impact": "Pourquoi c'est utile",
+                "action": "Comment l'utiliser en entreprise"
+            }},
             "take_away": "string"
         }}
         """

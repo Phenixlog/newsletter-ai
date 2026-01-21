@@ -1,0 +1,110 @@
+{
+  "week_number": 3,
+  "date_start": "2026-01-12",
+  "date_end": "2026-01-21",
+  "highlight": {
+    "category": "highlight",
+    "name": "Capgemini annonce 2400 suppressions de postes en France : l'IA redessine le secteur IT",
+    "description": "Le leader français de l'informatique Capgemini envisage de supprimer jusqu'à 2400 postes en France via des départs volontaires, justifiant cette restructuration par l'impact massif de l'intelligence artificielle sur ses activités. Cette annonce marque un tournant majeur dans la transformation du secteur des services numériques.",
+    "url": "https://www.zdnet.fr/actualites/capgemini-ce-quil-faut-savoir-sur-le-plan-de-restructuration-et-le-virage-ia-488452.htm",
+    "so_what": "Cette restructuration illustre concrètement comment l'IA transforme les modèles économiques des ESN. Les tâches auparavant réalisées par des consultants sont progressivement automatisées, forçant le secteur à repenser ses effectifs et compétences.",
+    "application": "Les entreprises clientes doivent anticiper cette mutation : renégocier leurs contrats de prestations IT, investir dans la formation de leurs équipes internes à l'IA, et revoir leur stratégie de sourcing technologique.",
+    "source_name": "ZDNet",
+    "date_published": "2026-01-20"
+  },
+  "france_news": [
+    {
+      "category": "france",
+      "name": "La France dans le top 5 mondial de l'adoption de l'IA",
+      "description": "Selon une étude Microsoft, la France se positionne parmi les cinq pays qui utilisent le plus l'intelligence artificielle au monde, témoignant d'une adoption rapide dans les entreprises françaises.",
+      "url": "https://siecledigital.fr/2026/01/20/la-france-dans-le-top-5-mondial-de-ladoption-de-lia/",
+      "so_what": "La France confirme sa place de leader européen en matière d'IA, créant un terreau favorable pour l'innovation et attirant les investissements internationaux dans ce domaine.",
+      "application": "Capitaliser sur cette dynamique en accélérant les projets IA internes, participer aux consortiums sectoriels et profiter des talents disponibles sur le marché français.",
+      "source_name": "Siècle Digital",
+      "date_published": "2026-01-21"
+    },
+    {
+      "category": "france",
+      "name": "Le ministère des Armées choisit Mistral AI pour son IA souveraine",
+      "description": "Le ministère des Armées officialise un accord avec Mistral AI pour déployer une IA souveraine sur serveurs français, garantissant la protection des données sensibles de défense.",
+      "url": "https://www.blog-nouvelles-technologies.fr/355039/ministere-armees-mistral-ai-accord-souverainete-ia-defense-2026/",
+      "so_what": "Cet accord valide la maturité de la filière IA française et ouvre la voie à des déploiements souverains dans d'autres secteurs critiques (santé, énergie, finance).",
+      "application": "Les entreprises gérant des données sensibles doivent évaluer les solutions IA souveraines françaises comme alternative aux offres américaines pour respecter les exigences réglementaires.",
+      "source_name": "Blog Nouvelles Technologies",
+      "date_published": "2026-01-15"
+    },
+    {
+      "category": "france",
+      "name": "BPCE déploie l'IA générative pour 50 000 collaborateurs",
+      "description": "Le groupe bancaire BPCE démocratise l'accès aux outils d'IA générative pour l'ensemble de ses 50 000 collaborateurs, transformant l'IA en outil du quotidien dans le secteur bancaire.",
+      "url": "https://www.larevuedudigital.com/groupe-bancaire-bpce-lia-generative-nouvel-outil-du-quotidien-pour-50-000-collaborateurs/",
+      "so_what": "Cette généralisation massive de l'IA dans une grande entreprise française démontre la faisabilité d'un déploiement à large échelle et crée un benchmark pour d'autres organisations.",
+      "application": "Planifier un déploiement progressif de l'IA générative : phase pilote, formation des collaborateurs, définition de la gouvernance et mesure des gains de productivité.",
+      "source_name": "La Revue du Digital",
+      "date_published": "2026-01-19"
+    },
+    {
+      "category": "france",
+      "name": "LightOn lance LightOnOCR-2, technologie d'OCR dopée à l'IA",
+      "description": "La startup française LightOn intègre à sa plateforme Paradigm la technologie LightOnOCR-2, capable de révéler et structurer l'information enfouie dans tous types de documents, dépassant l'état de l'art mondial.",
+      "url": "https://www.zonebourse.com/actualite-bourse/lighton-ouvre-une-nouvelle-voie-pour-l-ia-avec-lightonocr-2-ce7e58dcda8cf226",
+      "so_what": "La maîtrise de l'OCR par IA ouvre des perspectives majeures pour l'automatisation documentaire, le RAG et les agents IA dans les entreprises gérant de gros volumes de documents.",
+      "application": "Identifier les gisements de documents non structurés dans votre organisation et évaluer les solutions d'OCR IA pour libérer cette valeur dormante.",
+      "source_name": "Zonebourse",
+      "date_published": "2026-01-20"
+    }
+  ],
+  "international_news": [
+    {
+      "category": "international",
+      "name": "OpenAI introduit la publicité dans ChatGPT : un tournant décisif",
+      "description": "À la recherche de nouvelles sources de revenus, OpenAI annonce l'apparition de la publicité dans ChatGPT. Une décision cruciale pour assurer la pérennité financière de l'entreprise, mais qui pourrait dégrader l'expérience utilisateur.",
+      "url": "https://www.challenges.fr/entreprise/tech-numerique/gafam-en-puissance-ou-nouveau-netscape-pourquoi-la-publicite-place-openai-a-un-tournant-decisif_637236",
+      "so_what": "Cette monétisation par la publicité révèle les difficultés d'OpenAI à rentabiliser ses modèles coûteux et pourrait ouvrir un espace pour des concurrents proposant des modèles sans publicité.",
+      "application": "Réévaluer votre stratégie d'intégration de ChatGPT : anticiper l'impact de la pub sur l'expérience, explorer des alternatives (Anthropic, Mistral) et négocier des offres entreprises sans publicité.",
+      "source_name": "Challenges",
+      "date_published": "2026-01-20"
+    },
+    {
+      "category": "international",
+      "name": "Anthropic prépare une levée de fonds géante à 25 milliards de dollars",
+      "description": "Le concurrent d'OpenAI, Anthropic, préparerait une levée de fonds record de 25 milliards de dollars, avec Sequoia Capital qui investit après avoir soutenu OpenAI, témoignant de la course aux capitaux dans l'IA.",
+      "url": "https://siecledigital.fr/2026/01/20/sequoia-mise-sur-anthropic-malgre-openai/",
+      "so_what": "Ces montants stratosphériques confirment que l'IA reste la priorité absolue des investisseurs, mais interrogent sur la soutenabilité économique et les attentes de retours démesurées.",
+      "application": "Suivre l'évolution de ces acteurs majeurs et leurs innovations produits, car ces investissements massifs vont accélérer les lancements de fonctionnalités entreprises.",
+      "source_name": "Siècle Digital",
+      "date_published": "2026-01-20"
+    },
+    {
+      "category": "international",
+      "name": "OpenAI, Anthropic et Google lancent des outils IA pour la santé",
+      "description": "Les trois géants de l'IA proposent simultanément de nouveaux outils dédiés au secteur de la santé, malgré les inquiétudes persistantes sur la confidentialité des données et les hallucinations des modèles.",
+      "url": "https://www.zdnet.fr/actualites/openai-anthropic-et-google-proposent-de-nouveaux-outils-dia-pour-la-sante-488367.htm",
+      "so_what": "L'IA s'attaque aux secteurs régulés comme la santé, avec des promesses de gains d'efficacité mais des risques juridiques et éthiques importants qui nécessitent une vigilance accrue.",
+      "application": "Pour les acteurs santé : évaluer ces solutions avec des pilotes stricts, impliquer les équipes juridiques et éthiques dès le départ, et exiger des garanties contractuelles robustes.",
+      "source_name": "ZDNet",
+      "date_published": "2026-01-19"
+    },
+    {
+      "category": "international",
+      "name": "Google Flow intègre Veo 3.1 dans Workspace pour la création vidéo",
+      "description": "Google déploie Flow dans Workspace Business et Education, permettant à tous les professionnels de créer des vidéos 4K avec l'IA Veo 3.1, incluant génération audio et cohérence visuelle avancée.",
+      "url": "https://www.blog-nouvelles-technologies.fr/355531/google-flow-workspace-veo-3-1-video-ai-business-2026/",
+      "so_what": "La démocratisation de la création vidéo IA dans les outils de productivité courants va transformer la communication d'entreprise et le marketing de contenu.",
+      "application": "Tester ces outils de création vidéo IA pour vos besoins internes (formation, communication, marketing) et former les équipes concernées à ces nouveaux workflows créatifs.",
+      "source_name": "Blog Nouvelles Technologies",
+      "date_published": "2026-01-21"
+    }
+  ],
+  "tool_of_the_week": {
+    "category": "tool",
+    "name": "LightOnOCR-2 : L'OCR intelligent pour libérer vos documents",
+    "description": "Solution d'OCR nouvelle génération développée par la startup française LightOn, capable d'extraire et structurer intelligemment les informations de tous types de documents (PDF, scans, images) avec une précision inégalée. Intégrée à la plateforme Paradigm, elle prépare les données pour le RAG et les agents IA.",
+    "url": "https://www.zonebourse.com/actualite-bourse/lighton-ouvre-une-nouvelle-voie-pour-l-ia-avec-lightonocr-2-ce7e58dcda8cf226",
+    "so_what": "Transforme radicalement la gestion documentaire en entreprise en rendant exploitables des millions de documents non structurés, ouvrant la voie à l'automatisation de processus complexes.",
+    "application": "Cas d'usage concrets : numérisation de factures et contrats, automatisation de la conformité réglementaire, création de bases de connaissances structurées, alimentation de chatbots métiers. Disponible en cloud ou on-premise pour les données sensibles.",
+    "source_name": "Zonebourse / InformatiqueNews",
+    "date_published": "2026-01-20"
+  },
+  "take_away": "La semaine du 12 au 21 janvier 2026 marque un tournant majeur : l'IA passe de l'expérimentation à la transformation structurelle. Les 2400 suppressions de postes chez Capgemini et la monétisation publicitaire de ChatGPT révèlent la réalité économique brutale derrière le battage médiatique. Paradoxalement, la France brille en se positionnant dans le top 5 mondial de l'adoption de l'IA, avec des déploiements massifs (BPCE, 50 000 utilisateurs) et des innovations souveraines (Mistral pour la Défense, LightOn en OCR). Le message clé : l'IA n'est plus une option mais une nécessité compétitive. Les entreprises qui hésitent encore doivent passer à l'action en 2026, avec pragmatisme et gouvernance, sous peine d'être distancées. La question n'est plus 'pourquoi l'IA ?' mais 'comment déployer l'IA intelligemment dans mon organisation ?'"
+}

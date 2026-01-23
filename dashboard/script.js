@@ -1,13 +1,11 @@
 /**
- * Newsletter Studio - Multi-Newsletter JavaScript
+ * Newsletter Studio - Stable Dashboard JavaScript
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     // ===================================
     // State
     // ===================================
-    let activeNewsletterId = 'ia-hebdo';
-    let newslettersConfig = [];
     let archiveItems = [];
     let currentPage = 'dashboard';
 
@@ -19,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const runBtn = document.getElementById('run-btn');
     const quickLaunch = document.getElementById('quick-launch');
     const toast = document.getElementById('toast');
-    const newsletterSelect = document.getElementById('newsletter-select');
 
     // ===================================
     // Navigation
@@ -54,22 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===================================
     // API Interactions
     // ===================================
-    async function fetchConfigs() {
-        try {
-            const res = await fetch('/api/config');
-            const data = await res.json();
-            newslettersConfig = data.newsletters || [];
-            updateSwitcher();
-            return newslettersConfig;
-        } catch (err) {
-            console.error('Failed to fetch configs:', err);
-            return [];
-        }
-    }
-
     async function fetchArchives() {
         try {
-            const res = await fetch(`/api/news?newsletter_id=${activeNewsletterId}`);
+            const res = await fetch('/api/news');
             const data = await res.json();
             archiveItems = data.files || [];
             return archiveItems;
@@ -94,14 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
             runBtn.disabled = true;
             runBtn.innerHTML = '<span class="btn-icon">⏳</span><span>Génération...</span>';
 
-            const res = await fetch(`/api/run?newsletter_id=${activeNewsletterId}`, { method: 'POST' });
-            showToast(`🚀 Génération de "${activeNewsletterId}" lancée...`);
+            await fetch('/api/run', { method: 'POST' });
+            showToast('🚀 Génération lancée en arrière-plan...');
 
             setTimeout(() => {
                 runBtn.disabled = false;
                 runBtn.innerHTML = '<span class="btn-icon">🚀</span><span>Lancer la Veille</span>';
                 loadPageData(currentPage);
-            }, 10000);
+            }, 5000);
         } catch (err) {
             showToast('❌ Erreur lors du lancement');
             runBtn.disabled = false;
@@ -109,41 +93,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===================================
-    // UI Helpers
-    // ===================================
-    function updateSwitcher() {
-        newsletterSelect.innerHTML = newslettersConfig.map(n => `
-            <option value="${n.id}" ${n.id === activeNewsletterId ? 'selected' : ''}>
-                ${n.name}
-            </option>
-        `).join('') + '<option value="new">+ Nouvelle Newsletter</option>';
-    }
-
-    newsletterSelect.addEventListener('change', () => {
-        if (newsletterSelect.value === 'new') {
-            activeNewsletterId = 'new';
-            navigateTo('settings');
-            prepareNewForm();
-            return;
-        }
-        activeNewsletterId = newsletterSelect.value;
-        loadPageData(currentPage);
-        showToast(`Newsletter active : ${activeNewsletterId}`);
-    });
-
-    // ===================================
     // Page: Dashboard
     // ===================================
     async function loadDashboard() {
         const archives = await fetchArchives();
-        const config = newslettersConfig.find(c => c.id === activeNewsletterId);
 
         document.getElementById('stat-newsletters').textContent = archives.length;
-        document.getElementById('stat-recipients').textContent = config ? config.recipients.length : '-';
+        // Recipients stat is hardcoded for now or fetched from a simple endpoint if we had one
+        document.getElementById('stat-recipients').textContent = '-';
 
         const recentList = document.getElementById('recent-list');
         if (archives.length === 0) {
-            recentList.innerHTML = '<li class="empty-state">Aucune archive pour cette newsletter</li>';
+            recentList.innerHTML = '<li class="empty-state">Aucune archive</li>';
             return;
         }
 
@@ -175,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="empty-state">
                     <div class="empty-icon">📰</div>
                     <h3>Aucune archive</h3>
-                    <p>Commencez par lancer une veille pour cette newsletter.</p>
+                    <p>Commencez par lancer une veille.</p>
                 </div>
             `;
             return;
@@ -249,157 +210,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===================================
-    // Page: Recipients
+    // Page: Recipients (Static for now)
     // ===================================
     function loadRecipients() {
-        const config = newslettersConfig.find(c => c.id === activeNewsletterId);
         const list = document.getElementById('recipients-list');
-
-        if (!config || !config.recipients.length) {
-            list.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">Aucun destinataire configuré</td></tr>';
-            return;
-        }
-
-        list.innerHTML = config.recipients.map((email, i) => `
-            <tr>
-                <td class="recipient-email">${email}</td>
-                <td><span class="badge badge-group">Tous</span></td>
-                <td><span class="badge badge-active">Actif</span></td>
-                <td>
-                    <button class="btn-icon-sm" data-email="${email}">🗑️</button>
-                </td>
-            </tr>
-        `).join('');
-
-        list.querySelectorAll('.btn-icon-sm').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const email = btn.dataset.email;
-                config.recipients = config.recipients.filter(e => e !== email);
-                await saveConfig(config);
-                loadRecipients();
-            });
-        });
+        list.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">Gestion simplifiée : Modifiez TO_EMAIL dans les variables d\'environnement.</td></tr>';
     }
 
-    document.getElementById('add-recipient-btn')?.addEventListener('click', () => {
-        document.getElementById('modal-add-recipient').classList.remove('hidden');
-    });
-
-    document.getElementById('save-recipient')?.addEventListener('click', async () => {
-        const email = document.getElementById('new-email').value.trim();
-        if (!email.includes('@')) return showToast('Email invalide');
-
-        const config = newslettersConfig.find(c => c.id === activeNewsletterId);
-        if (!config) return;
-
-        config.recipients.push(email);
-        await saveConfig(config);
-        document.getElementById('modal-add-recipient').classList.add('hidden');
-        document.getElementById('new-email').value = '';
-        loadRecipients();
-    });
-
     // ===================================
-    // Page: Settings (Gestion)
+    // Page: Settings
     // ===================================
     function loadSettings() {
-        const config = newslettersConfig.find(c => c.id === activeNewsletterId);
-        if (!config) {
-            if (activeNewsletterId === 'new') prepareNewForm();
-            return;
-        }
-
-        document.getElementById('setting-theme').value = config.theme || '';
-        document.getElementById('setting-tone').value = config.tone || 'professionnel';
-        document.getElementById('setting-language').value = config.language || 'fr';
-        document.getElementById('setting-sender-name').value = config.from_name || '';
-
-        // Populate additional fields if we added them to UI
-        const nameInput = document.getElementById('setting-name') || createExtraInput('Nom de la Newsletter', 'setting-name');
-        nameInput.value = config.name;
-
-        const idInput = document.getElementById('setting-id') || createExtraInput('ID (unique, sans espace)', 'setting-id');
-        idInput.value = config.id;
-        idInput.disabled = true;
-    }
-
-    function prepareNewForm() {
-        activeNewsletterId = 'new';
-        document.getElementById('setting-theme').value = '';
-        document.getElementById('setting-sender-name').value = '';
-
-        const nameInput = document.getElementById('setting-name') || createExtraInput('Nom de la Newsletter', 'setting-name');
-        nameInput.value = '';
-
-        const idInput = document.getElementById('setting-id') || createExtraInput('ID (unique, sans espace)', 'setting-id');
-        idInput.value = '';
-        idInput.disabled = false;
-
-        showToast('Mode création : Nouvelle Newsletter');
-    }
-
-    function createExtraInput(label, id) {
-        const group = document.createElement('div');
-        group.className = 'form-group';
-        group.innerHTML = `<label>${label}</label><input type="text" id="${id}">`;
-        const container = document.querySelector('.settings-form');
-        container.prepend(group);
-        return document.getElementById(id);
-    }
-
-    document.getElementById('save-settings')?.addEventListener('click', async () => {
-        const id = document.getElementById('setting-id')?.value || activeNewsletterId;
-        const name = document.getElementById('setting-name')?.value || id;
-
-        if (!id) return showToast('ID requis');
-
-        const config = {
-            id,
-            name,
-            description: `Newsletter sur ${name}`,
-            theme: document.getElementById('setting-theme').value,
-            keywords: document.getElementById('setting-theme').value.split(',').map(s => s.trim()),
-            tone: document.getElementById('setting-tone').value,
-            language: document.getElementById('setting-language').value,
-            recipients: newslettersConfig.find(c => c.id === activeNewsletterId)?.recipients || [],
-            from_name: document.getElementById('setting-sender-name').value,
-            active: true
-        };
-
-        await saveConfig(config);
-        showToast('✅ Configuration enregistrée');
-        await fetchConfigs();
-        activeNewsletterId = id;
-        navigateTo('settings');
-    });
-
-    async function saveConfig(config) {
-        try {
-            await fetch('/api/config', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(config)
-            });
-        } catch (err) {
-            console.error('Save failed:', err);
-        }
+        // Simple placeholders
+        console.log('Settings page loaded');
     }
 
     // ===================================
     // Init
     // ===================================
-    async function init() {
-        await fetchConfigs();
-        if (newslettersConfig.length > 0) {
-            activeNewsletterId = newslettersConfig[0].id;
-        }
+    function init() {
         navigateTo('dashboard');
     }
-
-    // Global event for modal close
-    document.querySelector('.modal-close')?.addEventListener('click', () => {
-        document.getElementById('modal-add-recipient').classList.add('hidden');
-    });
 
     if (runBtn) runBtn.addEventListener('click', triggerRun);
     if (quickLaunch) quickLaunch.addEventListener('click', triggerRun);

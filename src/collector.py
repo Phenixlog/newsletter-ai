@@ -63,23 +63,18 @@ class NewsletterContent(BaseModel):
         return v
 
 class AINewsCollector:
-    def __init__(self, config: dict = None):
-        """
-        Initialize the collector with optional newsletter config.
-        Config can contain: theme, keywords, tone, language, name
-        """
+    def __init__(self):
         self.api_key = os.getenv("ANTHROPIC_API_KEY")
         self.client = Anthropic(api_key=self.api_key) if self.api_key else None
         self.model = "claude-sonnet-4-5-20250929"
         self.ddgs = DDGS()
         
-        # Dynamic config with defaults
-        self.config = config or {}
-        self.theme = self.config.get('theme', 'Intelligence Artificielle, Machine Learning, LLM')
-        self.keywords = self.config.get('keywords', ['IA', 'intelligence artificielle', 'OpenAI', 'Anthropic'])
-        self.tone = self.config.get('tone', 'professionnel')
-        self.language = self.config.get('language', 'fr')
-        self.newsletter_name = self.config.get('name', 'IA Hebdo')
+        # Hardcoded stable defaults for IA Hebdo
+        self.theme = 'Intelligence Artificielle, Machine Learning, LLM'
+        self.keywords = ['IA', 'intelligence artificielle', 'OpenAI', 'Anthropic']
+        self.tone = 'professionnel'
+        self.language = 'fr'
+        self.newsletter_name = 'IA Hebdo'
 
     def get_date_range(self):
         """Calculates the date range: Monday of previous week to Monday of current week."""

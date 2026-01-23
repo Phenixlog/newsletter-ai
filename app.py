@@ -133,6 +133,26 @@ async def run_now(background_tasks: BackgroundTasks, newsletter_id: str = None, 
     background_tasks.add_task(execute_script, newsletter_id)
     return {"status": "started", "message": f"Automation for {newsletter_id or 'all active'} is running"}
 
+# Cron Endpoint for Railway (no Basic Auth, uses secret key)
+CRON_SECRET = os.getenv("CRON_SECRET", "")
+
+@app.post("/api/cron/run")
+async def cron_run(background_tasks: BackgroundTasks, secret: str = None):
+    """
+    Endpoint for Railway Cron Job.
+    Protected by CRON_SECRET instead of Basic Auth for automated calls.
+    """
+    if not CRON_SECRET or secret != CRON_SECRET:
+        raise HTTPException(status_code=403, detail="Invalid cron secret")
+    
+    def execute_all_active():
+        import subprocess
+        subprocess.run(["python", "main.py"], check=True)
+    
+    background_tasks.add_task(execute_all_active)
+    return {"status": "started", "message": "Cron triggered: running all active newsletters"}
+
+
 # Static Files with Auth
 @app.get("/")
 async def protected_index(username: str = Depends(verify_credentials)):
